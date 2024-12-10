@@ -16,48 +16,25 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/ourStyles.css" rel="stylesheet" />
-    <style>
-        .contain-btns {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    </head>
+    <body>
 
-        .contain-btns a {
-            display: inline-block;
-            padding: 4px 8px;
-            font-size: 0.8rem;
-            color: white;
-            border-radius: 4px;
-            text-align: center;
-            text-decoration: none;
-            margin-right: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-   </style>
-</head>
-<body>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="position: fixed; width: 100%; z-index: 100; background-color: #1F2B3D; border-bottom: .5px solid #FBFAF7">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="/" style="font-weight: 100;">
-                <img src="assets/favicon.png" alt="Logo" style="height: 40px; margin-right: 10px;">
-                PILL POINT
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="position: fixed; width: 100%; z-index: 100; background-color: #1F2B3D; border-bottom: .5px solid #FBFAF7">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/" style="font-weight: 100;">
+                    <img src="assets/favicon.png" alt="Logo" style="height: 40px; margin-right: 10px;">
+                    PILL POINT
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/event_manager">Manage Events</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/volunteer_manager">Manage Volunteers</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #FBFAF7;" href="/inventory_view">Inventory</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #FBFAF7;" href="/edit_profile">Profile</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #FBFAF7;" href="/logout">Logout</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/dashboard">My Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/prescription">Prescriptions</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/inventory_view">Patients</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/dashboard">Return to Dashboard</a></li>
                     </ul>
                 </div>
             </div>
@@ -65,66 +42,76 @@
         
         <div class="admin-container">
             <h1 style="color: #FBFAF7; margin-bottom: 40px">Medicine Cabinet</h1>
-                
 
-        <section id="approved" style="padding-top: 60px; margin-top: 60px;"> 
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Medicine Name</th>
-                        <th>Medicine Type</th>
-                        <th>Expiration Date</th>
-                        <th>Description</th>
-                        <th>Side Effects</th>
-                        <th>Warnings</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <% medicines.forEach(medicine => { %>
+            <section id="approved" style="padding-top: 60px; margin-top: 60px;">
+                <table>
+                    <thead>
                         <tr>
-                            <td><%= medicine.name %></td>
-                            <td><%= medicine.type %></td>
-                            <td><%= medicine.expiration_date.toLocaleDateString() %></td>
-                            <td><%= medicine.description %></td>
-                            <td><%= medicine.side_effects %></td>
-                            <td><%= medicine.warnings %></td>
-                            <td>
-                                <div class="contain-btns">
-                                    <!-- You can add action buttons here if necessary -->
-                                </div>
-                            </td> 
+                            <th>Medicine Name</th>
+                            <th>Medicine Type</th>
+                            <th>Expiration Date</th>
+                            <th>Description</th>
+                            <th>Side Effects</th>
+                            <th>Warnings</th>
+                            <th>Actions</th>
                         </tr>
-                    <% }) %>
-                </tbody>
-            </table>
-        </section>
+                    </thead>
+                    <tbody>
+                        <% medicines.forEach(medicine => { %>
+                            <tr>
+                                <td><%= medicine.name %></td>
+                                <td><%= medicine.type %></td>
+                                <td><%= medicine.expiration_date.toLocaleDateString() %></td>
+                                <td><%= medicine.description %></td>
+                                <td><%= medicine.side_effects %></td>
+                                <td><%= medicine.warnings %></td>
+                                <td>
+                                    <div class="contain-btns">
+                                        <!-- Action buttons -->
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </section>
 
-        <section id="pending" style="padding-top: 60px; margin-top: 60px;"> 
-            
-            <table>
-                <div>
-                    <a href="/add_medicine" class="btn btn-primary">Add Medicine</a>
+            <section id="pending" style="padding-top: 60px; margin-top: 60px;">
+                <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+                    <a href="/add_medicine" class="btn btn-success" style="width: 200px; text-align: center;">Add Medicine</a>
                 </div>
-                
+            </section>            
         </div>
+
         <!-- Smaller Site Footer -->
-        <footer class="site-footer" style="height: 150px; position: relative; bottom: 0; left: 0; width: 100%; background-color: #1F2B3D; padding: 0; border-top: .5px solid #FBFAF7">
-            <div class="container" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding:0">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h5 class="text-uppercase" style="font-weight: 100; font-size: 16px; text-align: center; color: #FBFAF7; padding-top: 40px;">Thank you for visiting Pill Point</h5>
-                        <p class="small mb-0" style="font-family: sans-serif; font-size: 10px; font-weight: 100; text-align: center; color: #FBFAF7;">
-                            &copy; 2024 Pill Point. All Rights Reserved.
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    
-                    </div>
-                </div>
+        <footer class="site-footer" style="border-top: .5px solid #FBFAF7">
+            <div>
+                <h5 class="text-uppercase" style="font-weight: 100;">Thank you for visiting Pill Point</h5>
+                <p class="small mb-0" style="font-family: sans-serif; font-size: 10px; font-weight: 100;">
+                    &copy; 2024 Pill Point. All Rights Reserved.
+                </p>
+            </div>
+            <div>
+                <ul class="social-icons">
+                    <li><a class="facebook" href=""><i class="fab fa-facebook" style="color: #FBFAF7;"></i></a></li>
+                    <li><a class="linkedin" href=""><i class="fab fa-linkedin" style="color: #FBFAF7;"></i></a></li>
+                </ul>
             </div>
         </footer>
+
+        <style>
+                footer.site-footer {
+                position: relative;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: #1F2B3D;
+                padding: 20px 0;
+                text-align: center;
+                color: #FBFAF7;
+                font-size: 16px;
+            }
+        </style>
+
     </body>
 </html>

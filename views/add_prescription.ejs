@@ -108,9 +108,9 @@
     </head>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style='background-color: #FBFAF7; position: fixed; border-bottom: .5px solid rgba(0,0,0,0.75)'>
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="position: fixed; width: 100%; z-index: 100; background-color: #1F2B3D; border-bottom: .5px solid #FBFAF7">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="/" style="color: #393939;">
+                <a class="navbar-brand" href="/" style="font-weight: 100;">
                     <img src="assets/favicon.png" alt="Logo" style="height: 40px; margin-right: 10px;">
                     PILL POINT
                 </a>
@@ -119,13 +119,10 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0" style="color: #393939;">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="/#about-us">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="/#join-us">Sponsorship</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="/meet_jen">Jen's Story</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="/request_event">Request Event</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="/request_volunteer">Volunteer Sign-Up</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="/login">Log In</a></li>
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/medicine_cabinet">Medicine Cabniet</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/inventory_view">Patients</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/dashboard">Return to Dashboard</a></li>
                     </ul>
                 </div>
             </div>
@@ -193,28 +190,33 @@
         </form>
     </div>
 
-            <!-- Footer-->
-        <!-- Smaller Site Footer -->
-        <footer class="site-footer" style="height: 150px; position: relative; bottom: 0; left: 0; width: 100%; background-color: #1F2B3D; padding: 0;">
-            <div class="container" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h5 class="text-uppercase" style="font-weight: 100; font-size: 16px; text-align: center; color: #FBFAF7; padding-top: 40px;">Thank you for visiting the turtle shelter project</h5>
-                        <p class="small mb-0" style="font-family: sans-serif; font-size: 10px; font-weight: 100; text-align: center; color: #FBFAF7;">
-                            &copy; 2024 Turtle Shelter Project. All Rights Reserved. We are a registered 501(c)(3) nonprofit organization.
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <ul class="social-icons">
-                            <li><a class="facebook" href="https://www.facebook.com/turtleshelterproject/"><i class="fab fa-facebook" style="color: #FBFAF7;"></i></a></li>
-                            <li><a class="linkedin" href="https://www.linkedin.com/in/turtle-shelter-project-6aa0aa1a4/"><i class="fab fa-linkedin" style="color: #FBFAF7;"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
+    <footer class="site-footer" style="border-top: .5px solid #FBFAF7">
+        <div>
+            <h5 class="text-uppercase" style="font-weight: 100;">Thank you for visiting Pill Point</h5>
+            <p class="small mb-0" style="font-family: sans-serif; font-size: 10px; font-weight: 100;">
+                &copy; 2024 Pill Point. All Rights Reserved.
+            </p>
+        </div>
+        <div>
+            <ul class="social-icons">
+                <li><a class="facebook" href=""><i class="fab fa-facebook" style="color: #FBFAF7;"></i></a></li>
+                <li><a class="linkedin" href=""><i class="fab fa-linkedin" style="color: #FBFAF7;"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+    <style>
+        footer.site-footer {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #1F2B3D;
+        padding: 20px 0;
+        text-align: center;
+        color: #FBFAF7;
+        font-size: 16px;
+        }
+        </style>
         
 
     </body>
