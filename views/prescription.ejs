@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Event Manager</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400&display=swap" rel="stylesheet" type="text/css">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/ourStyles.css" rel="stylesheet" />
+    <style>
+        .contain-btns {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contain-btns a {
+            display: inline-block;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            color: white;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            margin-right: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+   </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="position: fixed; width: 100%; z-index: 100; background-color: #1F2B3D; border-bottom: .5px solid #FBFAF7">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="/" style="font-weight: 100;">
+                <img src="assets/favicon.png" alt="Logo" style="height: 40px; margin-right: 10px;">
+                PILL POINT
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/event_manager">Manage Events</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/volunteer_manager">Manage Volunteers</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #FBFAF7;" href="/inventory_view">Inventory</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #FBFAF7;" href="/edit_profile">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #FBFAF7;" href="/logout">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/dashboard">My Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="admin-container">
+            <h1 style="color: #FBFAF7; margin-bottom: 40px">Prescriptions</h1>
+                
+
+        <section id="approved" style="padding-top: 60px; margin-top: 60px;"> 
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Medicine Name</th>
+                        <th>Dosage</th>
+                        <th>Frequency</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (medicines && medicines.length > 0) { %>
+                        <% medicines.forEach(medicine => { %>
+                            <tr>
+                                <td><%= medicine.first_name %></td>
+                                <td><%= medicine.medicine_name %></td>
+                                <td><%= medicine.dosage %></td>
+                                <td><%= medicine.frequency %></td>
+                                <td><%= new Date(medicine.start_date).toLocaleDateString() %></td>
+                                <td><%= medicine.end_date ? new Date(medicine.end_date).toLocaleDateString() : "N/A" %></td>
+                                <td>
+                                    <div class="contain-btns">
+                                        <!-- Button to edit the prescription -->
+                                        <a href="/edit_prescription/<%= medicine.dosage_id %>" class="btn btn-success">Edit</a>
+                                        
+                                        <!-- Button to delete the prescription -->
+                                        <a href="/delete_prescription/<%= medicine.dosage_id  %>" 
+                                           class="btn btn-delete" 
+                                           onclick="return confirm('Are you sure you want to delete this prescription? This action cannot be undone.');">
+                                           Delete
+                                        </a>
+                                    </div>
+                                </td>
+                                  
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6" style="text-align: center;">No medicine details available</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            
+        </section>
+
+        <section id="pending" style="padding-top: 60px; margin-top: 60px;"> 
+            
+            <table>
+
+                <div>
+                    <a href="/add_prescription" class="btn btn-primary">Add Prescription</a>
+                </div>
+                
+        </div>
+        <!-- Smaller Site Footer -->
+        <footer class="site-footer" style="height: 150px; position: relative; bottom: 0; left: 0; width: 100%; background-color: #1F2B3D; padding: 0; border-top: .5px solid #FBFAF7">
+            <div class="container" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding:0">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h5 class="text-uppercase" style="font-weight: 100; font-size: 16px; text-align: center; color: #FBFAF7; padding-top: 40px;">Thank you for visiting Pill Point</h5>
+                        <p class="small mb-0" style="font-family: sans-serif; font-size: 10px; font-weight: 100; text-align: center; color: #FBFAF7;">
+                            &copy; 2024 Pill Point. All Rights Reserved.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

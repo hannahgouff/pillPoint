@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Add Medicine</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/ourStyles.css" rel="stylesheet" />
+    <style>
+        html, body {
+            background-color: #FBFAF7;
+            margin: 0;
+            padding: 0;
+        }
+        footer {
+            background-color: #393939;
+            text-align: center;
+            padding: 10px 0;
+        }
+        select option {
+            color: lightgray;
+        }
+        select {
+            color: gray;
+        }
+        header h1 {
+            text-align: center;
+            color: #393939;
+            background-color: #FBFAF7;
+        }
+        .form-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #F9F3E5;
+            border-radius: 8px;
+        }
+        .form-container h2 {
+            text-align: center;
+            color: #393939;
+        }
+        form label {
+            display: block;
+            margin: 8px 0;
+            color: #393939;
+            padding: 0;
+            font-weight: 100;
+        }
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
+        form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #393939;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="background-color: #FBFAF7; position: fixed; border-bottom: .5px solid rgba(0,0,0,0.75)">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="/" style="color: #393939;">
+                <img src="assets/favicon.png" alt="Logo" style="height: 40px; margin-right: 10px;">
+                Medicine Management
+            </a>
+        </div>
+    </nav>
+
+    <header>
+        <h1 style="background-color: #FBFAF7;">Add Medicine</h1>
+    </header>
+
+    <div class="form-container">
+        <h2 style="font-size: 20px; font-weight: 100;">Medicine Information</h2>
+        <form action="/add_medicine" method="POST">
+            <!-- Medicine Basic Info -->
+            <label for="medicine_name" style="font-weight: 150;">Medicine Name:</label>
+            <input type="text" id="medicine_name" name="medicine_name" required>
+
+            <label for="medicine_type" style="font-weight: 150;">Medicine Type:</label>
+            <select id="medicine_type" name="medicine_type" required>
+                <option value="">Select Medicine Type</option>
+                <option value="tablet">Tablet</option>
+                <option value="capsule">Capsule</option>
+                <option value="syrup">Syrup</option>
+                <option value="injection">Injection</option>
+            </select>
+
+            <label for="medicine_expiration" style="font-weight: 150;">Expiration Date:</label>
+            <input type="date" id="medicine_expiration" name="medicine_expiration" required>
+
+            <!-- Medicine Description -->
+            <label for="medicine_description" style="font-weight: 150;">Medicine Description:</label>
+            <textarea id="medicine_description" name="medicine_description" required></textarea>
+
+            <label for="side_effects" style="font-weight: 150;">Side Effects:</label>
+            <textarea id="side_effects" name="side_effects" required></textarea>
+
+            <label for="warnings" style="font-weight: 150;">Warnings:</label>
+            <textarea id="warnings" name="warnings" required></textarea>
+
+            <button type="submit" style="background-color: #457DD7;">Add Medicine</button>
+        </form>
+    </div>
+
+    <footer class="site-footer" style="height: 150px; position: relative; bottom: 0; left: 0; width: 100%; background-color: #1F2B3D; padding: 0;">
+        <div class="container" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5 class="text-uppercase" style="font-weight: 100; font-size: 16px; text-align: center; color: #FBFAF7; padding-top: 40px;">Thank you for managing your medicine!</h5>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
