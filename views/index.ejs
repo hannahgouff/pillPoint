@@ -31,13 +31,12 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0" style="color: #393939;">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="#about-us">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="/request_event">Request Event</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="/request_volunteer">Volunteer Sign-Up</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="#our_impact">Testimonials</a></li>
                         <li class="nav-item">
                             <% if (user) { %>
-                                <a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="/dashboard">My Dashboard</a>
+                                <a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="/dashboard">User Dashboard</a>
                             <% } else { %>
-                                <a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="/login">Login</a>
+                                <a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #393939;" href="/login">User Login</a>
                             <% } %>
                         </li>
                     </ul>
@@ -46,11 +45,11 @@
         </nav>
 
         <!-- Page Header-->
-        <header class="masthead" style="background-color: #FBFAF7; background-image: url('/assets/img/homeless-bkg.png'); background-size: auto 80%; background-position: bottom center; padding-top: 50px; height: auto; width: 100%; margin: 0; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; overflow: hidden;">
+        <header class="masthead" style="background-color: #FBFAF7; background-image: url('/assets/pills.jpeg'); background-size: 25%; background-position: bottom center; padding-top: 50px; height: 50%; width: 100%; margin: 0; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; overflow: hidden;">
             <div class="container position-relative px-4 px-lg-5" style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; margin-top: 100px;">
-                
-                <span class="subheading" style="font-weight: 100; font-size: 50px; text-align: center; margin-bottom: 10px;">PILL POINT</span>
-                <a href="#join-us" class="btn btn-success" style="text-align: center; display: inline-flex; align-items: center; justify-content: center; height: 30px; padding: 0 15px;">Begin Today</a>
+                <span class="subheading" style="font-weight: 100; font-size: 35px; text-align: center; margin-bottom: 10px;">Welcome To</span>
+                <span class="subheading" style="font-weight: 100; font-size: 80px; text-align: center; margin-bottom: 10px;">PILL POINT</span>
+                <a href="/login" class="btn btn-success" style="text-align: center; display: inline-flex; align-items: center; justify-content: center; height: 30px; padding: 0 15px;">Log In Now</a>
             </div>
         </header>
         
@@ -59,16 +58,15 @@
 
         <!-- About Us Section -->
         <section id="about-us" class="py-5" style="background-color: #F9F3E5;">
-            <div class="container" style="padding-top: 50px; margin-top: 50px;">
+            <div class="container" style="padding-top: 50px; margin-top: 50px; padding-bottom: 50px; margin-bottom: 50px">
                 <div class="row">
                     <div class="col-md-6">
-                        <!-- Adjust the margin-top to move the image up -->
-                        <img src="assets/img/vests2.png" alt="About Turtle Shelter Project" class="img-fluid" style="width: 100%; max-width: 500px;">
+                        <h1 style="margin-top: 0;">Simplifying Family Medication Management</h1>
                     </div>
                     <div class="col-md-6">
                        
                         <p style="font-family: sans-serif; font-weight: 100; font-size: 15.5px;">
-                             <b style="font-weight: bold;"></b>.  <b style="font-weight: bold;"></b> <b style="font-weight: bold;"></b> 
+                            PillPoint is a secure, user-friendly platform designed to help families manage their prescriptions and medications effortlessly in one organized space. Acting as a digital medicine cabinet, PillPoint provides tools to track prescriptions, dosages, and schedules for each family member, alongside a comprehensive inventory of household medications. Features include a login page for secure access, a prescriptions page with a calendar view for tracking medication schedules, and a medicine cabinet page for managing inventories, monitoring expiration dates, and receiving renewal alerts. PillPoint ensures families have centralized, streamlined access to vital medication information, making health management easier and more reliable. 
                         </p>
                         <h4 style="font-family: sans-serif; font-weight: 50; font-size: 80px; text-align: center;"></h4>
                         <p style="font-family: sans-serif; font-weight: 100; font-size: 15.5px; text-align: center;"></p>
@@ -85,26 +83,32 @@
                 <div class="col text-center">
                     <h2 class="section-heading" style="font-size: 50px; font-weight: 100;">Our Impact</h2>
                     <p class="section-text" style="font-family: sans-serif; font-weight: 100; font-size: 15.5px; text-align: center;">
-                        Since our founding in 2014, we have been driven by the goal of ensuring that no one has to freeze. Our vests offer lifesaving relief from suffering for those who are homeless and provide a meaningful way to serve for volunteers and participants.
+                        PillPoint empowers families to take control of their health with a secure, intuitive platform that simplifies medication management and enhances peace of mind. Hear from our users now:
                     </p>
                 </div>
             <!-- Testimonial Boxes -->
-            <div class="row mt-5">
+            <div class="row mt-5" style="padding-bottom: 50px;">
                 <div class="col-md-5 mx-auto">
                     <div class="box" style="width: 100%; padding: 30px; background-color: #F9F3E5; border: 2px solid #F9F3E5; border-radius: 5px;">
-                        <h2>Adam — Vest Recipient</h2>
+                        <h2>The Johnson Family</h2>
                         <p style="font-family: sans-serif; font-weight: 100; font-size: 15.5px; text-align: center;">
-                            "Before I received the vest, I was struggling to survive the cold nights on the streets. Every day was a battle against the freezing temperatures, and I didn't know how much longer I could hold on. Since receiving the vest, everything changed. I can now keep warm even in the harshest conditions, and it has given me a sense of hope that I didn’t have before. The warmth it provides, especially when I get wet, has saved my life. I feel like I have a fighting chance now."
+                            "As a busy mom of three, I used to struggle to keep track of my kids’ medications, especially during flu season. PillPoint has been a game-changer for our family. With its easy-to-use calendar and renewal reminders, I never miss a dose or worry about expired medicine. It’s brought so much peace of mind to our daily routine!"
                         </p>
+                        <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                            <img src="assets/pillFam.png" alt="pillFam" style="height: 200px;">
+                        </div>  
                     </div>
                 </div>
 
                 <div class="col-md-5 mx-auto mt-3 mt-md-0">
                     <div class="box" style="width: 100%; padding: 30px; background-color: #F9F3E5; border: 2px solid #F9F3E5; border-radius: 5px;">
-                        <h2>Hannah — Event Attendee</h2>
+                        <h2>David Wilson</h2>
                         <p style="font-family: sans-serif; font-weight: 100; font-size: 15.5px; text-align: center;">
-                            "Attending the volunteer event was a truly eye-opening experience for me. I’ve always wanted to give back, but I didn’t realize how much impact small actions could have. Seeing the faces of the people who received the vests, knowing that I helped make that possible, was one of the most rewarding moments of my life. The event opened my eyes to the struggles many people face and the power of coming together as a community. I left feeling inspired and more committed than ever to continue serving."
+                            "Managing medications for my elderly parents was overwhelming until we started using PillPoint. The organized inventory and dosage tracking helped us avoid dangerous overlaps and missed doses. It’s not just a tool—it’s been a lifesaver for our family, making caregiving so much simpler and safer."
                         </p>
+                        <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                            <img src="assets/pillFam2.png" alt="pillFam" style="height: 200px;">
+                        </div>                        
                     </div>
                 </div>
                 </div>
@@ -112,105 +116,7 @@
         </div>
     </section>
 
-        <!-- Join Our Mission Section -->
-        <section id="join-us" class="extra-section py-5" style="background-color: #F9F3E5; height: 600px;">
-            <div class="container" style="padding-top: 10px; margin-top: 10px;">
-                <div class="row">
-                    <div class="col text-center">
-                        <h2 class="section-heading" style="font-size: 50px; font-weight: 100;">Join Our Mission</h2>
-                        <p class="section-text" style="font-family: sans-serif; font-weight: 100; font-size: 15.5px; text-align: center;">
-                            Be a part of something bigger. <b style="font-weight: bold;">Request an event</b> or <b style="font-weight: bold;">become a volunteer</b> to help us save lives and provide resources for those in need.
-                        </p>
-                        <div class="mt-3">
-                            <a href="/request_event" class="btn btn-success" style="text-align: center; display: inline-flex; align-items: center; justify-content: center; height: 30px; padding: 0 15px;">Request an Event</a>
-                            <a href="/request_volunteer" class="btn btn-success" style="text-align: center; display: inline-flex; align-items: center; justify-content: center; height: 30px; padding: 0 15px;">Become a Volunteer</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Photos Row -->
-                <div class="row mt-4 text-center">
-                    <div class="col-md-4">
-                        <img src="assets/img/sewing.png" alt="Photo 1" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
-                    </div>
-                    <div class="col-md-4">
-                        <img src="assets/img/vests3.png" alt="Photo 2" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
-                    </div>
-                    <div class="col-md-4">
-                        <img src="assets/img/sew2.png" alt="Photo 3" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
-                    </div>
-                </div>
-            </div>
-            <div class="mt-3 text-center">
-                <a href="https://turtleshelterproject.org/checkout/donate?donatePageId=5b6a44c588251b72932df5a0" class="btn btn-success" style="padding: 10px 15px; text-align: center; display: inline-block; vertical-align: middle; line-height: normal;" target="_blank">Donate Today</a>
-            </div>
-              
-        </section>
-       
 
-        <!-- Sponsor Section-->
-        <div class="container" style="background-color: #FBFAF7; padding-bottom: 30px;">
-            <div class="text-center mb-5" style="background-color: #FBFAF7">
-                <br>
-                <br>
-                <h2>Thank You to Our Existing Sponsors for Years of Support</h2>
-                <h2 style="font-family: Open Sans; font-weight: 100; font-size: 16px; text-transform: none; padding-top: 0;">Please click on each companies logo to visit their sites!</h2>
-            </div>
-            <div class="sponsor-container" style="background-color: #FBFAF7">
-                <div class="sponsor-box" style="background-color: #F9F3E5;">
-                    <a href="https://www.cheneybrothersconstruction.com/" target="_blank">
-                        <img src="assets/img/cheney.jpeg" alt="Cheney Brothers Construction">
-                        <h3>Cheney Brothers Construction</h3>
-                    </a>
-                </div>
-                <div class="sponsor-box" style="background-color: #F9F3E5;">
-                    <a href="https://designsourceslc.com/" target="_blank">
-                        <img src="assets/img/design.jpeg" alt="Design Source">
-                        <h3>Design Source</h3>
-                    </a>
-                </div>
-                <div class="sponsor-box" style="background-color: #F9F3E5;">
-                    <a href="https://www.futurefoam.com/" target="_blank">
-                        <img src="assets/img/foam.jpeg" alt="Future Foam">
-                        <h3>Future Foam</h3>
-                    </a>
-                </div>
-                <div class="sponsor-box" style="background-color: #F9F3E5;">
-                    <a href="http://www.givemeachanceutah.org/" target="_blank">
-                        <img src="assets/img/daughters.jpeg" alt="Give Me a Chance a Daughters of Charity Ministry">
-                        <h3>Give Me a Chance a Daughters of Charity Ministry</h3>
-                    </a>
-                </div>
-                <div class="sponsor-box" style="background-color: #F9F3E5;">
-                    <a href="https://www.owfinc.com/" target="_blank">
-                        <img src="assets/img/owf.jpeg" alt="Outdoor Wilderness Fabrics">
-                        <h3>Outdoor Wilderness Fabrics</h3>
-                    </a>
-                </div>
-                <div class="sponsor-box" style="background-color: #F9F3E5;">
-                    <a href="https://www.softminkyblankets.com/" target="_blank">
-                        <img src="assets/img/minkey.jpeg" alt="Minky Couture">
-                        <h3>Minky Couture</h3>
-                    </a>
-                </div>
-                <div class="sponsor-box" style="background-color: #F9F3E5;">
-                    <a href="https://www.goodshepherdogden.org/" target="_blank">
-                        <img src="assets/img/church.png" alt="​The Episcopal Church of the Good Shepherd">
-                        <h3>​The Episcopal Church of the Good Shepherd</h3>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-<!-- Optional: Add custom padding for spacing -->
-<style>
-    .sponsor-container {
-        padding-top: 30px;
-        padding-bottom: 0px; /* Adjust the value for more/less spacing */
-        background-color: #FBFAF7;
-    }
-</style>
 
     <!-- Footer-->
     <footer class="py-3" style="background-color: #1F2B3D; color: #FBFAF7; height: 320px;">
@@ -219,30 +125,30 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <h5 class="text-uppercase" style="font-weight: 100; font-size: 22px; text-align: left;">Contact Us</h5>
                     <p class="small" style="font-family: sans-serif; font-size: 14px; font-weight: 100; text-align: left;">
-                        <strong>Address:</strong> PO BOX 382, Kaysville, UT 84037<br>
-                        <strong>Phone:</strong> 801-872-3190<br>
-                        <strong>Email:</strong> <a href="mailto:turtleshelterproject@gmail.com" class="text-light text-decoration-none">turtleshelterproject@gmail.com</a></p>
+                        <strong>Address:</strong> PO BOX 100, Provo, UT 84064<br>
+                        <strong>Phone:</strong> 123-456-7890<br>
+                        <strong>Email:</strong> <a href="mailto:turtleshelterproject@gmail.com" class="text-light text-decoration-none">pillpoint@gmail.com</a></p>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <h5 class="text-uppercase" style="font-weight: 100; font-size: 22px; text-align: left;">Counties</h5>
+                    <h5 class="text-uppercase" style="font-weight: 100; font-size: 22px; text-align: left;">Medications</h5>
                     <br>
                     <div class="row d-flex align-items-center">
                         <div class="col-6">
                             <ul class="small" style="font-family: sans-serif; font-size: 14px; font-weight: 100; text-align: left; list-style-type: none; padding-left: 0;">
-                                <li>Box Elder</li>
-                                <li>Cache</li>
-                                <li>Davis</li>
-                                <li>Morgan</li>
-                                <li>Salt Lake City</li>
+                                <li>Acetaminophen</li>
+                                <li>Asprin</li>
+                                <li>Calcium Carbonate</li>
+                                <li>Cetirizine</li>
+                                <li>Diphenhydramine</li>
                             </ul>
                         </div>
                         <div class="col-6">
                             <ul class="small" style="font-family: sans-serif; font-size: 14px; font-weight: 100; text-align: left; list-style-type: none; padding-left: 0;">
-                                <li>Summit</li>
-                                <li>Toole</li>
-                                <li>Utah</li>
-                                <li>Wasatch</li>
-                                <li>Weber</li>
+                                <li>Ibuprofen</li>
+                                <li>Loperamide</li>
+                                <li>Loratadine</li>
+                                <li>Omeprazole</li>
+                                <li>Pseudoephedrine</li>
                             </ul>
                         </div>
                     </div>
@@ -252,13 +158,13 @@
                     <h5 class="text-uppercase" style="font-weight: 100; font-size: 22px; text-align: left;">Stay in Touch</h5>
                     <br>
                     <div class="d-flex justify-content-left">
-                        <a href="https://www.facebook.com/TurtleShelterProject" target="_blank" class="text-light me-3">
+                        <a href="" target="_blank" class="text-light me-3">
                             <i class="fab fa-facebook fa-2x"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/turtle-shelter-project-6aa0aa1a4/" target="_blank" class="text-light me-3">
+                        <a href="" target="_blank" class="text-light me-3">
                             <i class="fab fa-linkedin fa-2x"></i>
                         </a>
-                        <a href="mailto:turtleshelterproject@gmail.com" target="_blank" class="text-light me-3">
+                        <a href="" target="_blank" class="text-light me-3">
                             <i class="fas fa-envelope fa-2x"></i>
                         </a>
                     </div>
@@ -269,7 +175,7 @@
             <div class="row">
                 <div class="col text-center">
                     <p class="small mb-0" style="font-family: sans-serif; font-size: 14px; font-weight: 100; text-align: center;">
-                        &copy; 2024 Turtle Shelter Project. All Rights Reserved. We are a registered 501(c)(3) nonprofit organization.
+                        &copy; 2024 Pill Point. All Rights Reserved.
                     </p>
                 </div>
             </div>
