@@ -541,7 +541,8 @@ app.get('/dashboard', authMiddleware, isLoggedIn, async (req, res) => {
   try {
       // Query to get the logged-in user's first name
       const userDetails = await knex('users')
-          .leftJoin('patients', 'users.user_id', 'patients.user_id')
+          .innerJoin('family_members', 'users.user_id', 'family_members.user_id')
+          .innerJoin('patients', 'family_members.patient_id', 'patients.patient_id')
           .select('patients.first_name', 'patients.last_name')
           .where('users.user_id', req.session.userId) // Use the user_id from the session
           .first(); // Ensure only one result is returned
