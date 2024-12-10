@@ -199,40 +199,42 @@ app.post('/add_medicine', (req, res) => {
   const {
       medicine_name,
       medicine_type,
-      expiration_date,
-      description,
+      medicine_expiration,
+      medicine_description,
       side_effects,
       warnings
   } = req.body;
 
   // Insert medicine data into the 'medicine' table
-  knex('medicine')
+  const [insertedMed] = knex('medicine')
       .insert({
           name: medicine_name,
           type: medicine_type,
-          expiration_date: expiration_date
+          expiration_date: medicine_expiration
       })
       .returning('medicine_id') // Retrieve the 'medicine_id' of the inserted row
-      .then(([medicine_id]) => {
-          // Now that we have the medicine_id, insert into 'medicine_description'
-          return knex('medicine_description').insert({
-              medicine_id: medicine_id,  // Use the inserted medicine_id here
-              description: description,
-              side_effects: side_effects,
-              warnings: warnings
-          });
+
+  const medicine_id = insertedMed.medicine_id || insertedMed;
+  
+  if (!medicine_id) {
+    // Now that we have the medicine_id, insert into 'medicine_description'
+    knex('medicine_description')
+      .insert({
+        medicine_id,  // Use the inserted medicine_id here
+        description: medicine_description,
+        side_effects: side_effects,
+        warnings: warnings
       })
       .then(() => {
-          // After successful insert, redirect to the add_medicine page
-          res.redirect('/add_medicine');
+        // After successful insert, redirect to the add_medicine page
+        res.redirect('/medicine_cabinet');
       })
       .catch((error) => {
           console.error('Error inserting medicine description:', error);
           res.status(500).send('Something went wrong');
       });
+  }
 });
-
-
 
 app.get("/prescription", authMiddleware, async (req, res) => {
   try {
