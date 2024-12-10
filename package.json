@@ -1,22 +1,28 @@
 {
-  "name": "project-3",
+  "name": "pillpoint",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hannahgouff/pillPoint.git"
+  },
+  "author": "group 1-7",
   "license": "ISC",
-  "description": "",
+  "bugs": {
+    "url": "https://github.com/hannahgouff/pillPoint/issues"
+  },
+  "homepage": "https://github.com/hannahgouff/pillPoint#readme",
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "knex": "^3.1.0",
-    "nodemailer": "^6.9.16",
     "pg": "^8.13.1"
   }
 }
