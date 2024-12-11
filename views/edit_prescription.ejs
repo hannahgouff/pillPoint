@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Edit Prescription</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/ourStyles.css" rel="stylesheet" />
+        <style>
+            /* Same styles as the Add Prescription page */
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style='background-color: #FBFAF7; position: fixed; border-bottom: .5px solid rgba(0,0,0,0.75)'>
+            <!-- Navigation content identical to Add Prescription -->
+        </nav>
+
+        <header>
+            <h1 style="background-color: #FBFAF7;">Edit Prescription</h1>
+        </header>
+
+        <div class="form-container">
+            <h2 style="font-size: 20px; font-weight: 100;">Edit Prescription Form</h2>
+            <form action="/edit_prescription" method="POST">
+                <!-- Hidden input to identify the prescription -->
+                <input type="hidden" name="prescription_id" value="<%= prescription.prescription_id %>" />
+
+                <label for="patient">Patient Name:</label>
+                <select name="patient_id" id="patient" required>
+                    <% patients.forEach(patient => { %>
+                        <option value="<%= patient.patient_id %>" 
+                                <%= patient.patient_id === prescription.patient_id ? 'selected' : '' %>>
+                            <%= patient.first_name %> <%= patient.last_name %>
+                        </option>
+                    <% }) %>
+                </select>
+
+                <div>
+                    <label for="medicine">Medicine Name:</label>
+                    <input type="text" name="medicine_name" id="medicine" value="<%= prescription.medicine_name %>" required />
+                </div>
+                <div>
+                    <label for="dosage">Dosage:</label>
+                    <input type="text" name="dosage" id="dosage" value="<%= prescription.dosage %>" required />
+                </div>
+                <div>
+                    <label for="frequency">Frequency:</label>
+                    <input type="text" name="frequency" id="frequency" value="<%= prescription.frequency %>" required />
+                </div>
+                <div>
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" name="start_date" id="start_date" value="<%= prescription.start_date %>" required />
+                </div>
+                <div>
+                    <label for="end_date">End Date:</label>
+                    <input type="date" name="end_date" id="end_date" value="<%= prescription.end_date %>" />
+                </div>
+
+                <button type="submit" style="background-color: #457DD7;">Update Prescription</button>
+            </form>
+        </div>
+
+        <footer class="site-footer" style="height: 150px; position: relative; bottom: 0; left: 0; width: 100%; background-color: #1F2B3D; padding: 0;">
+            <!-- Footer content identical to Add Prescription -->
+        </footer>
+    </body>
+</html>

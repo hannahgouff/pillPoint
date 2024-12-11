@@ -15,78 +15,96 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/ourStyles.css" rel="stylesheet" />
+        <style>
+            /* Set height to fill the screen */
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Admin container takes up remaining space */
+            .admin-container {
+                background-color: #2D3A4F;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+
+            /* Footer stays at the bottom */
+            footer.site-footer {
+                position: relative;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: #1F2B3D;
+                padding: 20px 0;
+                text-align: center;
+                color: #FBFAF7;
+                font-size: 16px;
+            }
+        </style>
     </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="position: fixed; width: 100%; z-index: 100; background-color: #1F2B3D; border-bottom: .5px solid #FBFAF7">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="/" style="font-weight: 100;">
-                <img src="assets/favicon.png" alt="Logo" style="height: 40px; margin-right: 10px;">
-                PILL POINT
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                   
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/prescription">Prescriptions</a></li>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="position: fixed; width: 100%; z-index: 100; background-color: #1F2B3D; border-bottom: .5px solid #FBFAF7">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/" style="font-weight: 100;">
+                    <img src="assets/favicon.png" alt="Logo" style="height: 40px; margin-right: 10px;">
+                    PILL POINT
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/medicine_cabinet">Medicine Cabinet</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/inventory_view">Inventory</a></li>
-                    
-                </ul>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/prescription">Prescriptions</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/inventory_view">Patients</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Admin Page Content -->
+        <div class="admin-container">
+            <h2 class="welcome-msg">Welcome, <%= userDetails.first_name %>!</h2>
+
+            <!-- Cards Section -->
+            <div class="cards-container">
+                <div class="card" onclick="location.href='/medicine_cabinet';">
+                    <img src="assets/calendar.png" alt="calendar Icon">
+                    <h2 id="save-lives-heading">Medicine Cabinet</h2>
+                    <p style="font-family: sans-serif; font-weight: 100; font-size: 15.5px; text-align: center;">Check all medications. Shows the name ....</p>
+                </div>
+                <div class="card" onclick="location.href='/prescription';">
+                    <img src="assets/pills.png" alt="Volunteers Icon">
+                    <h2 id="save-lives-heading"><%= userDetails.first_name %>'s Prescriptions</h2>
+                    <p style="font-family: sans-serif; font-weight: 100; font-size: 15.5px; text-align: center;">Get volunteer info and recent history</p>
+                </div>
+                <div class="card" onclick="location.href='/internal-tool-3';">
+                    <img src="assets/people.png" alt="Dashboard Icon">
+                    <h2 id="save-lives-heading">Patients</h2>
+                    <p style="font-family: sans-serif; font-weight: 100; font-size: 15.5px; text-align: center;">Check on user accounts and access</p>
+                </div>
             </div>
         </div>
-    </nav>
 
-    <!-- Admin Page Content -->
-    <div class="admin-container" style="background-color: #2D3A4F">
-        
-            <h2 class="welcome-msg">Welcome, <%= userDetails.first_name %>!</h2>
-        
-
-        <!-- Cards Section -->
-        <div class="cards-container">
-            <div class="card" onclick="location.href='/medicine_cabinet';">
-                <img src="assets/img/icons/calendar.png" alt="calendar Icon">
-                <h2 id="save-lives-heading">Medicine Cabinet</h2>
-                <p style="font-family: sans-serif; font-weight: 100; font-size: 15.5px; text-align: center;">View all events and <b style="font-weight: bolder;">record</b> completed events</p>
-            </div>
-            <div class="card" onclick="location.href='/prescription';">
-                <img src="assets/img/icons/pencil.png" alt="Volunteers Icon">
-                <h2 id="save-lives-heading">My Prescriptions</h2>
-                <p style="font-family: sans-serif; font-weight: 100; font-size: 15.5px; text-align: center;">Get volunteer info and recent history</p>
-            </div>
-            <div class="card" onclick="location.href='/family';">
-                <img src="assets/img/icons/people.png" alt="Dashboard Icon">
-                <h2 id="save-lives-heading">My Family</h2>
-                <p style="font-family: sans-serif; font-weight: 100; font-size: 15.5px; text-align: center;">Check on user accounts and access</p>
-            </div>
-      
-       
-        
-
-    <!-- Footer -->
-    <footer class="site-footer" style="height: 150px; position: relative; bottom: 0; left: 0; width: 100%; background-color: #1F2B3D; padding: 0; border-top: .5px solid #FBFAF7">
-    <div class="container" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-        <div class="row">
-            <div class="col-sm-12">
-                <h5 class="text-uppercase" style="font-weight: 100; font-size: 16px; text-align: center; color: #FBFAF7; padding-top: 40px;">Thank you for visiting Pill Point</h5>
-                <p class="small mb-0" style="font-family: sans-serif; font-size: 10px; font-weight: 100; text-align: center; color: #FBFAF7;">
-                    &copy; 2024 Pill Point. All Rights Reserved. 
+        <!-- Footer -->
+        <footer class="site-footer" style="border-top: .5px solid #FBFAF7">
+            <div>
+                <h5 class="text-uppercase" style="font-weight: 100;">Thank you for visiting Pill Point</h5>
+                <p class="small mb-0" style="font-family: sans-serif; font-size: 10px; font-weight: 100;">
+                    &copy; 2024 Pill Point. All Rights Reserved.
                 </p>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <ul class="social-icons">
-                    <li><a class="facebook" href="https://www.facebook.com/turtleshelterproject/"><i class="fab fa-facebook" style="color: #FBFAF7;"></i></a></li>
-                    <li><a class="linkedin" href="https://www.linkedin.com/in/turtle-shelter-project-6aa0aa1a4/"><i class="fab fa-linkedin" style="color: #FBFAF7;"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-</body>
+        </footer>
+    </body>
 </html>

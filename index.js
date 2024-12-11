@@ -194,45 +194,50 @@ app.get('/add_medicine', (req, res) => {
       });
 });
 
-// POST route to add a new medicine record
-app.post('/add_medicine', (req, res) => {
-  const {
-      medicine_name,
-      medicine_type,
-      expiration_date,
-      description,
-      side_effects,
-      warnings
-  } = req.body;
+app.post('/add_medicine', isLoggedIn, async (req, res) => {
+    const {
+        medicine_name,
+        medicine_type,
+        medicine_expiration,
+        medicine_description,
+        side_effects,
+        warnings
+    } = req.body;
 
-  // Insert medicine data into the 'medicine' table
-  knex('medicine')
-      .insert({
-          name: medicine_name,
-          type: medicine_type,
-          expiration_date: expiration_date
-      })
-      .returning('medicine_id') // Retrieve the 'medicine_id' of the inserted row
-      .then(([medicine_id]) => {
-          // Now that we have the medicine_id, insert into 'medicine_description'
-          return knex('medicine_description').insert({
-              medicine_id: medicine_id,  // Use the inserted medicine_id here
-              description: description,
-              side_effects: side_effects,
-              warnings: warnings
-          });
-      })
-      .then(() => {
-          // After successful insert, redirect to the add_medicine page
-          res.redirect('/add_medicine');
-      })
-      .catch((error) => {
-          console.error('Error inserting medicine description:', error);
-          res.status(500).send('Something went wrong');
-      });
+    try {
+        // Insert medicine data into the 'medicine' table and retrieve the 'medicine_id'
+        const insertedMed = await knex('medicine')
+            .insert({
+                name: medicine_name,
+                type: medicine_type,
+                expiration_date: medicine_expiration
+            })
+            .returning('medicine_id'); // Retrieve the 'medicine_id' of the inserted row
+
+        // Extract the actual medicine_id value
+        const medicine_id = Array.isArray(insertedMed)
+            ? insertedMed[0].medicine_id || insertedMed[0] // For PostgreSQL (object) or SQLite (integer)
+            : insertedMed; // For SQLite (integer)
+
+        if (medicine_id) {
+            // Insert into 'medicine_description' using the retrieved `medicine_id`
+            await knex('medicine_description').insert({
+                medicine_id, // Use the extracted medicine_id here
+                description: medicine_description,
+                side_effects: side_effects,
+                warnings: warnings
+            });
+
+            // After successful inserts, redirect to the desired page
+            res.redirect('/medicine_cabinet');
+        } else {
+            throw new Error('Failed to retrieve medicine_id');
+        }
+    } catch (error) {
+        console.error('Error processing medicine information:', error);
+        res.status(500).send('Something went wrong');
+    }
 });
-
-
 
 app.get("/prescription", authMiddleware, async (req, res) => {
   try {
@@ -267,11 +272,8 @@ app.get("/add_prescription", authMiddleware, async (req, res) => {
 
       // Fetch patients related to the user
       const patients = await knex('patients')
-          .leftJoin('family_members', 'patients.user_id', 'family_members.related_user_id')
-          .select('patients.patient_id', 'patients.first_name', 'patients.last_name')
-          .where(function () {
-              this.where('patients.user_id', userId).orWhere('family_members.user_id', userId);
-          });
+          .select('first_name', 'last_name')
+          .where('user_id', userId);
 
       res.render("add_prescription", { patients });
   } catch (error) {
