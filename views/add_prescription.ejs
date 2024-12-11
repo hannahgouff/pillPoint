@@ -128,67 +128,64 @@
             </div>
         </nav>
 
-    <header>
-        <h1 style="background-color: #FBFAF7;">Add Prescription</h1>
-    </header>
+        <header>
+            <h1 style="background-color: #FBFAF7;">Add Prescription</h1>
+        </header>
 
-    <div class="form-container">
-        <h2 style="font-size: 20px; font-weight: 100;">New Volunteer Form</h2>
-        <form action="/add_prescription" method="POST">
-            <label for="patient">Patient Name:</label>
-        <select name="patient_id" id="patient" required style="font-weight: 150;">
-            <% patients.forEach(patient => { %>
-                <option value="<%= patient.patient_id %>"><%= patient.first_name %> <%= patient.last_name %></option>
-            <% }) %>
-        </select>
-        </div>
-        <div>
-            <label for="medicine">Medicine Name:</label>
-            <input type="text" name="medicine_name" id="medicine" required  />
-        </div>
-        <div>
-            <label for="dosage">Dosage:</label>
-            <input type="text" name="dosage" id="dosage" required  />
-        </div>
-        <div>
-            <label for="frequency">Frequency:</label>
-            <input type="text" name="frequency" id="frequency" required  />
-        </div>
-        <div>
-            <label for="start_date">Start Date:</label>
-            <input type="date" name="start_date" id="start_date" required  />
-        </div>
-        <div>
-            <label for="end_date">End Date:</label>
-            <input type="date" name="end_date" id="end_date"  />
-        </div>
-            <button type="submit" style="background-color: #457DD7;" onclick="openPopup(); return false;">Submit Prescription</button>
-                <!-- The Modal -->
-            <div id="customAlert" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closePopup()">&times;</span>
-                    <h2 style="font-size: 18px">Thank you for submitting a request to become a volunteer!</h2>
-                    <p style="font-size: 12px">Being a volunteer changes lives. We will be contacting you shortly to provide more details. Please check your inbox for an email from jen@turtleshelterproject.com. If you do not hear from her in 24 hours, please check your spam folder. Thank you in advance for your contributions!</p>
-                    <button class="btn btn-success" onclick="closePopup()">Close</button>
+        <div class="form-container">
+            <h2 style="font-size: 20px; font-weight: 100;">New Volunteer Form</h2>
+            <form action="/add_prescription" method="POST">
+                <label for="patient">Patient Name:</label>
+                <select name="patient_id" id="patient" required style="font-weight: 150;">
+                    <% patients.forEach(patient => { %>
+                        <option value="<%= patient.patient_id %>"><%= patient.first_name %> <%= patient.last_name %></option>
+                    <% }) %>
+                </select>
+                <div>
+                    <label for="medicine">Medicine Name:</label>
+                    <input type="text" name="medicine_name" id="medicine" required  />
                 </div>
-            </div>
-    
-            <!-- JavaScript -->
-            <script>
-                // Function to open the modal
-                function openPopup() {
-                    document.getElementById("customAlert").style.display = "block";
-                }
-    
-                // Function to close the modal
-                function closePopup() {
-                    document.getElementById("customAlert").style.display = "none";
-                }
-            </script>
-        </form>
-    </div>
-        </form>
-    </div>
+                <div>
+                    <label for="dosage">Dosage:</label>
+                    <input type="text" name="dosage" id="dosage" required  />
+                </div>
+                <div>
+                    <label for="frequency">Frequency:</label>
+                    <input type="text" name="frequency" id="frequency" required  />
+                </div>
+                <div>
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" name="start_date" id="start_date" required  />
+                </div>
+                <div>
+                    <label for="end_date">End Date:</label>
+                    <input type="date" name="end_date" id="end_date"  />
+                </div>
+                <button type="submit" style="background-color: #457DD7;" onclick="openPopup(); return false;">Submit Prescription</button>
+                    <!-- The Modal -->
+                <div id="customAlert" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closePopup()">&times;</span>
+                        <h2 style="font-size: 18px">Thank you for submitting a request to become a volunteer!</h2>
+                        <p style="font-size: 12px">Being a volunteer changes lives. We will be contacting you shortly to provide more details. Please check your inbox for an email from jen@turtleshelterproject.com. If you do not hear from her in 24 hours, please check your spam folder. Thank you in advance for your contributions!</p>
+                        <button class="btn btn-success" onclick="closePopup()">Close</button>
+                    </div>
+                </div>
+        
+                <!-- JavaScript -->
+                <script>
+                    // Function to open the modal
+                    function openPopup() {
+                        document.getElementById("customAlert").style.display = "block";
+                    }
+        
+                    // Function to close the modal
+                    function closePopup() {
+                        document.getElementById("customAlert").style.display = "none";
+                    }
+                </script>
+            </form>
+        </div>
 
     <footer class="site-footer" style="border-top: .5px solid #FBFAF7">
         <div>
