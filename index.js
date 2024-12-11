@@ -331,6 +331,7 @@ app.get('/delete_prescription/:dosage_id', async (req, res) => {
 
 
 //View family
+//view
 app.get('/family', async (req, res) => {
     const userId = req.session.userId; // Logged-in user's ID
     if (!userId) {
@@ -338,12 +339,10 @@ app.get('/family', async (req, res) => {
     }
 
     try {
-        // Fetch patients from the database for the logged-in user
         const patients = await knex('patients')
             .select('*')
             .where('user_id', userId);
 
-        // Render the EJS template with the patient data
         res.render('family', { patients });
     } catch (error) {
         console.error(error);
@@ -351,8 +350,71 @@ app.get('/family', async (req, res) => {
     }
 });
 
-//add
-app.post('/patients/add', async (req, res) => {
+app.get('/delete_patient/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        await knex('patients')
+            .where('patient_id', id)
+            .del();
+
+        res.redirect('/family');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Failed to delete patient');
+    }
+});
+//get route to create the page
+app.get('/edit_patient/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const patient = await knex('patients')
+            .select('*')
+            .where('patient_id', id)
+            .first();
+
+        if (!patient) {
+            return res.status(404).send('Patient not found');
+        }
+
+        res.render('edit_patient', { patient });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
+});
+//post route to add the data
+app.post('/edit_patient/:id', async (req, res) => {
+    const { id } = req.params; // Get the patient ID from the URL
+    const { first_name, last_name, phone_number, email, birth_date, allergies } = req.body; // Destructure updated data from the form
+
+    try {
+        // Update the patient record in the database
+        await knex('patients')
+            .where('patient_id', id)
+            .update({
+                first_name,
+                last_name,
+                phone_number,
+                email,
+                birth_date, // Ensure this matches the format in your database (e.g., DATE type)
+                allergies,
+            });
+
+        // Redirect to the patient list after saving
+        res.redirect('/family');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Failed to update patient information');
+    }
+});
+app.get('/add_patient', (req, res) => {
+    res.render('add_patient');
+});
+
+
+app.post('/add_patient', async (req, res) => {
     const { first_name, last_name, phone_number, email, birth_date, allergies } = req.body;
     const userId = req.session.userId; // Logged-in user's ID
 
@@ -363,60 +425,16 @@ app.post('/patients/add', async (req, res) => {
             last_name,
             phone_number,
             email,
-            birth_date,
+            birth_date, // Ensure proper format (e.g., DATE type in the database)
             allergies
         });
-        res.redirect('/family'); // Redirect back to the family page
+
+        res.redirect('/family'); // Redirect back to the patient list page
     } catch (error) {
         console.error(error);
         res.status(500).send('Failed to add patient');
     }
 });
-
-//edit
-app.post('/patients/edit/:id', async (req, res) => {
-    const { id } = req.params;
-    const { first_name, last_name, phone_number, email, birth_date, allergies } = req.body;
-
-    try {
-        await knex('patients')
-            .where('patient_id', id)
-            .update({ first_name, last_name, phone_number, email, birth_date, allergies });
-        res.redirect('/family'); // Redirect back to the family page
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Failed to update patient');
-    }
-});
-
-//delete
-app.get('/patients/delete/:id', async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        await knex('patients')
-            .where('patient_id', id)
-            .del();
-        res.redirect('/family'); // Redirect back to the family page
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Failed to delete patient');
-    }
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
