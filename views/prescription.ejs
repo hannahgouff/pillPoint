@@ -40,24 +40,22 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="position: fixed; width: 100%; z-index: 100; background-color: #1F2B3D; border-bottom: .5px solid #FBFAF7">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="/" style="font-weight: 100;">
-                <img src="assets/favicon.png" alt="Logo" style="height: 40px; margin-right: 10px;">
-                PILL POINT
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="position: fixed; width: 100%; z-index: 100; background-color: #1F2B3D; border-bottom: .5px solid #FBFAF7">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/" style="font-weight: 100;">
+                    <img src="assets/favicon.png" alt="Logo" style="height: 40px; margin-right: 10px;">
+                    PILL POINT
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/event_manager">Manage Events</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/volunteer_manager">Manage Volunteers</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #FBFAF7;" href="/inventory_view">Inventory</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #FBFAF7;" href="/edit_profile">Profile</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #FBFAF7;" href="/logout">Logout</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/dashboard">My Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/medicine_cabinet">Medicine Cabniet</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/inventory_view">Patients</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/dashboard">Return to Dashboard</a></li>
                     </ul>
                 </div>
             </div>
@@ -78,6 +76,7 @@
                         <th>Frequency</th>
                         <th>Start Date</th>
                         <th>End Date</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -116,12 +115,8 @@
             
         </section>
 
-        <section id="pending" style="padding-top: 60px; margin-top: 60px;"> 
-            
-            <table>
-
-                <div>
-                    <a href="/add_prescription" class="btn btn-primary">Add Prescription</a>
+                <div style="display: flex; justify-content: center; margin-top: 20px;">
+                    <a href="/add_prescription" class="btn btn-success" style="width: 200px; text-align: center;">Add Prescription</a>
                 </div>
                 
         </div>
