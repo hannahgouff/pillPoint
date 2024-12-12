@@ -35,6 +35,14 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+        body {
+        background-color: #2a3444;
+         /* Ensure text is readable on the dark background */
+        margin: 0;
+        padding: 0;
+        }
+
+        
    </style>
 </head>
 <body>
@@ -44,7 +52,7 @@
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="/" style="font-weight: 100;">
                 <img src="assets/favicon.png" alt="Logo" style="height: 40px; margin-right: 10px;">
-                TURTLE SHELTER PROJECT
+                PILL POINT
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
@@ -52,10 +60,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/event_manager">Manage Events</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/volunteer_manager">Manage Volunteers</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #FBFAF7;" href="/inventory_view">Inventory</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #FBFAF7;" href="/edit_profile">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/medicine_cabinet">Medicine Cabinet</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/prescription">Prescriptions</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color: #FBFAF7;" href="/logout">Logout</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/dashboard">My Dashboard</a></li>
                     </ul>
@@ -65,8 +71,9 @@
         
         
 
-        <section id="approved" style="padding-top: 60px; margin-top: 60px;"> 
-        <h2 id="patients" style="color: #FBFAF7; font-weight: 100;">Patient Records</h2>
+        <section id="approved" style="padding-top: 60px; margin-top: 60px; background-color: #2a3444;">
+            <h1 style="color: #FBFAF7; margin-bottom: 40px">Patient Records</h1>
+
 
         <!-- Add Patient Button -->
         <div style="text-align: center; margin-bottom: 20px;">
@@ -105,26 +112,29 @@
             </tbody>
         </table>
 
-        </section>
-
+    </section style = background-color: #2a3444>
+        
+        <br>
+        <br>
+        <br>
+        <br>
+        
        
         <!-- Smaller Site Footer -->
-        <footer class="site-footer" style="height: 150px; position: relative; bottom: 0; left: 0; width: 100%; background-color: #1F2B3D; padding: 0; border-top: .5px solid #FBFAF7">
-            <div class="container" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding:0">
+        <footer class="site-footer" style="border-top: .5px solid #FBFAF7; position: relative; bottom: 0; left: 0; width: 100%; background-color: #1F2B3D; padding: 20px 0; text-align: center;">
+            <div>
+                    <div class="container" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding:0">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h5 class="text-uppercase" style="font-weight: 100; font-size: 16px; text-align: center; color: #FBFAF7; padding-top: 40px;">Thank you for visiting the turtle shelter project</h5>
+                        <h5 class="text-uppercase" style="font-weight: 100; font-size: 16px; text-align: center; color: #FBFAF7; padding-top: 40px;">Thank you for visiting PillPoint</h5>
                         <p class="small mb-0" style="font-family: sans-serif; font-size: 10px; font-weight: 100; text-align: center; color: #FBFAF7;">
-                            &copy; 2024 Turtle Shelter Project. All Rights Reserved. We are a registered 501(c)(3) nonprofit organization.
+                            &copy; 2024 PillPoint. All Rights Reserved.
                         </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 text-center">
-                        <ul class="social-icons">
-                            <li><a class="facebook" href="https://www.facebook.com/turtleshelterproject/"><i class="fab fa-facebook" style="color: #FBFAF7;"></i></a></li>
-                            <li><a class="linkedin" href="https://www.linkedin.com/in/turtle-shelter-project-6aa0aa1a4/"><i class="fab fa-linkedin" style="color: #FBFAF7;"></i></a></li>
-                        </ul>
+                        
                     </div>
                 </div>
             </div>

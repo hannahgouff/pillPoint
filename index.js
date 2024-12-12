@@ -146,33 +146,35 @@ app.get("/logout", (req, res) => {
     });
 });
 
-// Medicine Cabinet Page
 app.get("/medicine_cabinet", authMiddleware, async (req, res) => {
-  try {
-      // Fetch the user's ID from the session
-      const userId = req.session.userId;
+    try {
+        // Fetch the user's ID from the session
+        const userId = req.session.userId;
 
-      // Query the database
-      const medicines = await knex('medicine')
-          .join('dosage', 'medicine.medicine_id', 'dosage.medicine_id') // Join with the dosage table
-          .join('patients', 'dosage.patient_id', 'patients.patient_id') // Join with the patients table
-          .leftJoin('medicine_description', 'medicine.medicine_id', 'medicine_description.medicine_id') // Join medicine descriptions
-          .select(
-              'medicine.name',
-              'medicine.type',
-              'medicine.expiration_date',
-              'medicine_description.description',
-              'medicine_description.side_effects',
-              'medicine_description.warnings'
-          )
-          .where('patients.user_id', userId);
+        // Query the database
+        const medicines = await knex('medicine')
+            .leftJoin('dosage', 'medicine.medicine_id', 'dosage.medicine_id') // Use LEFT JOIN to include medicines without dosage
+            .leftJoin('patients', 'dosage.patient_id', 'patients.patient_id') // Use LEFT JOIN for optional patient data
+            .leftJoin('medicine_description', 'medicine.medicine_id', 'medicine_description.medicine_id') // Join medicine descriptions
+            .select(
+                'medicine.name',
+                'medicine.type',
+                'medicine.expiration_date',
+                'medicine_description.description',
+                'medicine_description.side_effects',
+                'medicine_description.warnings'
+            )
+            .where(function () {
+                // Include medicines linked to the user or with no patient association
+                this.where('patients.user_id', userId).orWhereNull('patients.user_id');
+            });
 
-      // Render the medicine cabinet page with the filtered data
-      res.render("medicine_cabinet", { medicines });
-  } catch (error) {
-      console.error('Error fetching medicines:', error);
-      res.status(500).send('Error fetching medicine cabinet data.');
-  }
+        // Render the medicine cabinet page with the data
+        res.render("medicine_cabinet", { medicines });
+    } catch (error) {
+        console.error('Error fetching medicines:', error);
+        res.status(500).send('Error fetching medicine cabinet data.');
+    }
 });
 
 // GET route to display the add_medicine form
