@@ -6,7 +6,6 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Become a Volunteer Form</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -14,8 +13,9 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400&display=swap" rel="stylesheet" type="text/css">
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        <link href="css/ourStyles.css" rel="stylesheet" />
+        <link href="/css/styles.css" rel="stylesheet" />
+        <link href="/css/ourStyles.css" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="/assets/favicon.png" />
         <style>
             /* Apply white background to both html and body */
             html, body {
@@ -136,11 +136,12 @@
             <h2 style="font-size: 20px; font-weight: 100;">New Volunteer Form</h2>
             <form action="/add_prescription" method="POST">
                 <label for="patient">Patient Name:</label>
-                <select name="patient_id" id="patient" required style="font-weight: 150;">
+                <select name="patient_id" id="patient" required>
+                    <option value="" disabled selected>Select a patient</option>
                     <% patients.forEach(patient => { %>
                         <option value="<%= patient.patient_id %>"><%= patient.first_name %> <%= patient.last_name %></option>
-                    <% }) %>
-                </select>
+                    <% }); %>
+                </select>                
                 <div>
                     <label for="medicine">Medicine Name:</label>
                     <input type="text" name="medicine_name" id="medicine" required  />
