@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Event Manager</title>
+        <title>Prescriptions</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -63,61 +63,61 @@
         
         <div class="admin-container">
             <h1 style="color: #FBFAF7; margin-bottom: 40px">Prescriptions</h1>
-                
-
-        <section id="approved" style="padding-top: 60px; margin-top: 60px;"> 
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Patient Name</th>
-                        <th>Medicine Name</th>
-                        <th>Dosage</th>
-                        <th>Frequency</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% if (medicines && medicines.length > 0) { %>
-                        <% medicines.forEach(medicine => { %>
-                            <tr>
-                                <td><%= medicine.first_name %></td>
-                                <td><%= medicine.medicine_name %></td>
-                                <td><%= medicine.dosage %></td>
-                                <td><%= medicine.frequency %></td>
-                                <td><%= new Date(medicine.start_date).toLocaleDateString() %></td>
-                                <td><%= medicine.end_date ? new Date(medicine.end_date).toLocaleDateString() : "N/A" %></td>
-                                <td>
-                                    <div class="contain-btns">
-                                        <!-- Button to edit the prescription -->
-                                        <a href="/edit_prescription/<%= medicine.dosage_id %>" class="btn btn-success">Edit</a>
-                                        
-                                        <!-- Button to delete the prescription -->
-                                        <a href="/delete_prescription/<%= medicine.dosage_id  %>" 
-                                           class="btn btn-delete" 
-                                           onclick="return confirm('Are you sure you want to delete this prescription? This action cannot be undone.');">
-                                           Delete
-                                        </a>
-                                    </div>
-                                </td>
-                                  
-                            </tr>
-                        <% }) %>
-                    <% } else { %>
+                    
+            <section id="approved" style="padding-top: 60px; margin-top: 60px;"> 
+                <table>
+                    <thead>
                         <tr>
-                            <td colspan="6" style="text-align: center;">No medicine details available</td>
+                            <th>Patient Name</th>
+                            <th>Medicine Name</th>
+                            <th>Dosage</th>
+                            <th>Frequency</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Actions</th>
                         </tr>
-                    <% } %>
-                </tbody>
-            </table>
-            
-        </section>
-
-                <div style="display: flex; justify-content: center; margin-top: 20px;">
-                    <a href="/add_prescription" class="btn btn-success" style="width: 200px; text-align: center;">Add Prescription</a>
-                </div>
+                    </thead>
+                    <tbody>
+                        <% if (prescriptions && prescriptions.length > 0) { %>
+                            <% prescriptions.forEach(prescription => { %>
+                                <tr>
+                                    <td><%= prescription.full_name %></td>
+                                    <td><%= prescription.medicine_name %></td>
+                                    <td><%= prescription.dosage %></td>
+                                    <td><%= prescription.frequency %></td>
+                                    <td><%= new Date(prescription.start_date).toLocaleDateString() %></td>
+                                    <td><%= prescription.end_date ? new Date(prescription.end_date).toLocaleDateString() : "N/A" %></td>
+                                    <td>
+                                        <div class="contain-btns">
+                                            <!-- Button to edit the prescription -->
+                                            <a href="/edit_prescription/<%= prescription.prescription_id %>" class="btn btn-success">Edit</a>
+                                            
+                                            <!-- Button to delete the prescription -->
+                                            <a href="/delete_prescription/<%= prescription.prescription_id %>" 
+                                               class="btn btn-delete" 
+                                               onclick="return confirm('Are you sure you want to delete this prescription? This action cannot be undone.');">
+                                               Delete
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="7" style="text-align: center;">No prescription details available</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                    
+                    
+                </table>
+            </section>
+    
+            <div style="display: flex; justify-content: center; margin-top: 20px;">
+                <a href="/add_prescription" class="btn btn-success" style="width: 200px; text-align: center;">Add Prescription</a>
+            </div>
+                    
+        </div>
                 
         </div>
         <!-- Smaller Site Footer -->
