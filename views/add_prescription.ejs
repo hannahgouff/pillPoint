@@ -136,42 +136,34 @@
             <h2 style="font-size: 20px; font-weight: 100;">New Volunteer Form</h2>
             <form action="/add_prescription" method="POST">
 
-                <input type="hidden" name="prescription_id" value="<%= prescription.prescription_id %>" />
-
-                <!-- Patient Selection -->
-
-                    <label for="full_name">Patient Name:</label>
-                    <input type="text" name="full_name" id="full_name" value="<%= prescription.full_name %>" required />
-
+                <!-- Patient Name -->
+                <label for="full_name">Patient Name:</label>
+                <input type="text" name="full_name" id="full_name" required />
+            
                 <!-- Medicine Name -->
-
-                    <label for="medicine_name">Medicine Name:</label>
-                    <input type="text" name="medicine_name" id="medicine_name" value="<%= prescription.medicine_name %>" required />
-        
+                <label for="medicine_name">Medicine Name:</label>
+                <input type="text" name="medicine_name" id="medicine_name" required />
+              
                 <!-- Dosage -->
-  
-                    <label for="dosage">Dosage:</label>
-                    <input type="text" name="dosage" id="dosage" value="<%= prescription.dosage %>" required />   
-
+                <label for="dosage">Dosage:</label>
+                <input type="text" name="dosage" id="dosage" required />
+            
                 <!-- Frequency -->
-      
-                    <label for="frequency">Frequency:</label>
-                    <input type="text" name="frequency" id="frequency" value="<%= prescription.frequency %>" required />
-    
+                <label for="frequency">Frequency:</label>
+                <input type="text" name="frequency" id="frequency" required />
+            
                 <!-- Start Date -->
-         
-                    <label for="start_date">Start Date:</label>
-                    <input type="date" name="start_date" id="start_date" value="<%= prescription.start_date %>" required />
-    
+                <label for="start_date">Start Date:</label>
+                <input type="date" name="start_date" id="start_date" required />
+            
                 <!-- End Date -->
-          
-                    <label for="end_date">End Date:</label>
-                    <input type="date" name="end_date" id="end_date" value="<%= prescription.end_date %>" />
-
+                <label for="end_date">End Date:</label>
+                <input type="date" name="end_date" id="end_date" />
+            
                 <button type="submit" style="background-color: #457DD7;">Submit Prescription</button>
-                    <!-- The Modal -->
-        
-            </form>
+            
+            </form>            
+
         </div>
 
     <footer class="site-footer" style="border-top: .5px solid #FBFAF7">
