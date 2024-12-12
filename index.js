@@ -239,87 +239,149 @@ app.post('/add_medicine', isLoggedIn, async (req, res) => {
     }
 });
 
-app.get("/prescription", authMiddleware, async (req, res) => {
-  try {
-      // Fetch the user's ID from the session
-      const userId = req.session.userId;
+// app.get("/prescription", authMiddleware, async (req, res) => {
+//   try {
+//       // Fetch the user's ID from the session
+//       const userId = req.session.userId;
 
-      // Query the database
-      const medicines = await knex('dosage')
-          .join('medicine', 'dosage.medicine_id', 'medicine.medicine_id') // Join with the medicine table
-          .join('patients', 'dosage.patient_id', 'patients.patient_id') // Join with the patients table
-          .select(
-              'patients.first_name', // Patient's first name
-              'medicine.name as medicine_name', // Medicine name
-              'dosage.dosage', // Dosage
-              'dosage.frequency', // Frequency
-              'dosage.start_date', // Start date
-              'dosage.end_date' // End date
-          )
-          .where('patients.user_id', userId);
-      // Render the medicine cabinet page with the filtered data
-      res.render("prescription", { medicines });
-  } catch (error) {
-      console.error('Error fetching medicine details:', error);
-      res.status(500).send('Error fetching medicine cabinet data.');
-  }
+//       // Query the database
+//       const medicines = await knex('dosage')
+//           .join('medicine', 'dosage.medicine_id', 'medicine.medicine_id') // Join with the medicine table
+//           .join('patients', 'dosage.patient_id', 'patients.patient_id') // Join with the patients table
+//           .select(
+//               'patients.first_name', // Patient's first name
+//               'medicine.name as medicine_name', // Medicine name
+//               'dosage.dosage', // Dosage
+//               'dosage.frequency', // Frequency
+//               'dosage.start_date', // Start date
+//               'dosage.end_date' // End date
+//           )
+//           .where('patients.user_id', userId);
+//       // Render the medicine cabinet page with the filtered data
+//       res.render("prescription", { medicines });
+//   } catch (error) {
+//       console.error('Error fetching medicine details:', error);
+//       res.status(500).send('Error fetching medicine cabinet data.');
+//   }
+// });
+
+app.get('/prescription', async (req, res) => {
+    try {
+        const prescriptions = await knex('prescription')
+            .select('full_name', 'medicine_name', 'dosage', 'frequency', 'start_date', 'end_date', 'prescription_id');
+
+        res.render('prescription', { prescriptions: prescriptions }); // Pass it with the exact key
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
 });
+
+// GET route to fetch prescription details and render the edit form
+app.get('/edit_prescription/:id', async (req, res) => {
+    let id = req.params.id;  // Get the prescription ID from the URL params
+    console.log("Requested prescription ID:", id);  // Log the ID to ensure it's correct
+
+    try {
+        // Fetch the prescription data from the prescription table
+        const prescription = await knex('prescription')
+            .select('prescription_id','full_name', 'medicine_name', 'dosage', 'frequency', 'start_date', 'end_date')
+            .where('prescription_id', id)  // Assuming prescription_id is the unique identifier
+            .first();
+
+        if (!prescription) {
+            // If no prescription is found, send a 404 error
+            return res.status(404).send('Prescription not found');
+        }
+
+        // Render the edit prescription page with the fetched data
+        res.render('edit_prescription', { prescription });
+    } catch (error) {
+        console.error("Error fetching prescription:", error);
+        res.status(500).send('Server error');
+    }
+});
+
+// POST route to handle the form submission and update the prescription
+app.post('/edit_prescription/:id', async (req, res) => {
+    const { id } = req.params;
+    const { full_name, medicine_name, dosage, frequency, start_date, end_date } = req.body;
+
+    try {
+        // Update the prescription data in the database
+        await knex('prescription')
+            .where('prescription_id', id)
+            .update({
+                full_name,
+                medicine_name,
+                dosage,
+                frequency,
+                start_date,
+                end_date
+            });
+
+        // Redirect back to the list of prescriptions or show a success message
+        res.redirect('/prescription');
+    } catch (error) {
+        console.error("Error updating prescription:", error);
+        res.status(500).send('Server error');
+    }
+});
+
+
+
+
 
 // add prescription route
 app.get("/add_prescription", authMiddleware, async (req, res) => {
-  try {
-      const userId = req.session.userId;
-
-      // Fetch patients related to the user
-      const patients = await knex('patients')
-          .select('first_name', 'last_name')
-          .where('user_id', userId);
-
-      res.render("add_prescription", { patients });
-  } catch (error) {
-      console.error('Error loading add prescription page:', error);
-      res.status(500).send('Error loading page.');
-  }
+    try {
+        // Example prescription object
+        const prescription = {
+            prescription_id: "",
+            full_name: "",
+            medicine_name: "",
+            dosage: "",
+            frequency: "",
+            start_date: "",
+            end_date: ""
+        };
+        
+        res.render("add_prescription", { prescription }); // Pass the prescription object
+    } catch (error) {
+        console.error('Error loading add prescription page:', error);
+        res.status(500).send('Error loading page.');
+    }
 });
 
 app.post("/add_prescription", async (req, res) => {
-  try {
-      const { patient_id, medicine_name, dosage, frequency, start_date, end_date } = req.body;
+    const { full_name, medicine_name, dosage, frequency, start_date, end_date } = req.body;
 
-      // Check if the medicine already exists in the database
-      const existingMedicine = await knex("medicine")
-          .select("medicine_id")
-          .where("name", medicine_name)
-          .first();
-
-      if (existingMedicine) {
-          // Medicine exists, proceed to add prescription
-          await knex("dosage").insert({
-              patient_id,
-              medicine_id: existingMedicine.medicine_id,
-              dosage,
-              frequency,
-              start_date,
-              end_date,
-          });
-
-          res.redirect("/prescription"); // Redirect to a success page or list of prescriptions
-      } else {
-          // Redirect to the add_medicine page with the medicine_name pre-filled
-          res.redirect(`/add_medicine?medicine_name=${encodeURIComponent(medicine_name)}`);
-      }
-  } catch (error) {
-      console.error("Error adding prescription:", error);
-      res.status(500).send("Error adding prescription.");
-  }
+    try {
+        // Insert new prescription data
+        await knex("prescription").insert({
+            full_name: full_name,
+            medicine_name: medicine_name,
+            dosage: dosage,
+            frequency: frequency,
+            start_date: start_date,
+            end_date: end_date
+        });
+        // Redirect after successful insert
+        return res.redirect("/prescription");
+    } catch (error) {
+        console.error("Error adding prescription:", error);
+        res.status(500).send("Error adding prescription.");
+    }
 });
 
-app.get('/delete_prescription/:dosage_id', async (req, res) => {
-  const dosage_id = req.params.dosage_id;
+
+
+app.get('/delete_prescription/:prescription_id', async (req, res) => {
+  const prescription_id = req.params.prescription_id;
 
   try {
     // Use Knex to delete the event from the database
-    await knex('dosage').where('dosage_id', dosage_id).del();
+    await knex('prescription').where('prescription_id', prescription_id).del();
     
     // Redirect to the event manager page after successful deletion
     res.redirect('/prescription');
@@ -441,7 +503,23 @@ app.post('/add_patient', async (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+
+

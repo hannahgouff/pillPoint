@@ -10,64 +10,196 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <link href="css/ourStyles.css" rel="stylesheet" />
+        <link href="/css/styles.css" rel="stylesheet" />
+        <link href="/css/ourStyles.css" rel="stylesheet" />
         <style>
-            /* Same styles as the Add Prescription page */
+                        /* Apply white background to both html and body */
+                        html, body {
+                background-color: #2D3A4F;
+                margin: 0;
+                padding: 0;
+            }        
+            footer {
+                background-color: #2D3A4F;
+                text-align: center;
+                padding: 10px 0;
+            }
+        
+            select option {
+                color: lightgray;
+            }
+        
+            select {
+                color: gray; /* Ensures the text color for select dropdown is gray */
+            }
+        
+            header h1 {
+                text-align: center;
+                color: #393939;
+                background-color: #2D3A4F;
+            }
+        
+            .form-container {
+                max-width: 800px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: #F9F3E5;
+                border-radius: 8px;
+                /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+            }
+        
+            .form-container h2 {
+                text-align: center;
+                color: #393939;
+            }
+        
+            form label {
+                display: block;
+                margin: 8px 0;
+                color: #393939;
+                padding: 0;
+                font-weight: 100;
+            }
+        
+            form input, form select {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                border-radius: 4px;
+                border: 1px solid #ddd;
+                background-color: #FBFAF7;
+            }
+        
+            form button {
+                width: 100%;
+                padding: 10px;
+                background-color: #393939;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        
+            form button:hover {
+                background-color: #555;
+            }
+            form select {
+                width: 100%;
+                padding: 8px;
+                margin: 0; /* Ensure no margin is added around the select elements */
+                border-radius: 4px;
+                border: 1px solid #ddd;
+                background-color: #FBFAF7;
+            }
+            form input, form select, form textarea, form button {
+            margin: 0;
+            padding: 8px;
+            }
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style='background-color: #FBFAF7; position: fixed; border-bottom: .5px solid rgba(0,0,0,0.75)'>
-            <!-- Navigation content identical to Add Prescription -->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="position: fixed; width: 100%; z-index: 100; background-color: #1F2B3D; border-bottom: .5px solid #FBFAF7">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/" style="font-weight: 100;">
+                    <img src="/assets/favicon.png" alt="Logo" style="height: 40px; margin-right: 10px;">
+                    PILL POINT
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/medicine_cabinet">Medicine Cabinet</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/prescription">Prescriptions</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/inventory_view">Patients</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
 
         <header>
-            <h1 style="background-color: #FBFAF7;">Edit Prescription</h1>
+            <h1 style="background-color: #2D3A4F; color:#FBFAF7">Edit Prescription</h1>
         </header>
 
         <div class="form-container">
             <h2 style="font-size: 20px; font-weight: 100;">Edit Prescription Form</h2>
-            <form action="/edit_prescription" method="POST">
+            <form action="/edit_prescription/<%= prescription.prescription_id %>" method="POST">
                 <!-- Hidden input to identify the prescription -->
                 <input type="hidden" name="prescription_id" value="<%= prescription.prescription_id %>" />
 
-                <label for="patient">Patient Name:</label>
-                <select name="patient_id" id="patient" required>
-                    <% patients.forEach(patient => { %>
-                        <option value="<%= patient.patient_id %>" 
-                                <%= patient.patient_id === prescription.patient_id ? 'selected' : '' %>>
-                            <%= patient.first_name %> <%= patient.last_name %>
-                        </option>
-                    <% }) %>
-                </select>
+                <!-- Patient Selection -->
 
-                <div>
-                    <label for="medicine">Medicine Name:</label>
-                    <input type="text" name="medicine_name" id="medicine" value="<%= prescription.medicine_name %>" required />
-                </div>
-                <div>
+                    <label for="full_name">Patient Name:</label>
+                    <input type="text" name="full_name" id="full_name" value="<%= prescription.full_name %>" required />
+
+                <!-- Medicine Name -->
+
+                    <label for="medicine_name">Medicine Name:</label>
+                    <input type="text" name="medicine_name" id="medicine_name" value="<%= prescription.medicine_name %>" required />
+            
+
+                <!-- Dosage -->
+  
                     <label for="dosage">Dosage:</label>
                     <input type="text" name="dosage" id="dosage" value="<%= prescription.dosage %>" required />
-                </div>
-                <div>
+            
+
+                <!-- Frequency -->
+      
                     <label for="frequency">Frequency:</label>
                     <input type="text" name="frequency" id="frequency" value="<%= prescription.frequency %>" required />
-                </div>
-                <div>
+      
+
+                <!-- Start Date -->
+         
                     <label for="start_date">Start Date:</label>
                     <input type="date" name="start_date" id="start_date" value="<%= prescription.start_date %>" required />
-                </div>
-                <div>
+        
+
+                <!-- End Date -->
+          
                     <label for="end_date">End Date:</label>
                     <input type="date" name="end_date" id="end_date" value="<%= prescription.end_date %>" />
-                </div>
+              
 
+                <!-- Submit Button -->
                 <button type="submit" style="background-color: #457DD7;">Update Prescription</button>
             </form>
         </div>
 
-        <footer class="site-footer" style="height: 150px; position: relative; bottom: 0; left: 0; width: 100%; background-color: #1F2B3D; padding: 0;">
-            <!-- Footer content identical to Add Prescription -->
+        <footer class="site-footer" style="border-top: .5px solid #393939;">
+            <div>
+                <h5 class="text-uppercase" style="font-weight: 100;">Thank you for visiting Pill Point</h5>
+                <p class="small mb-0" style="font-family: sans-serif; font-size: 10px; font-weight: 100;">
+                    &copy; 2024 Pill Point. All Rights Reserved.
+                </p>
+            </div>
+            <div>
+                <ul class="social-icons">
+                    <li><a class="facebook" href=""><i class="fab fa-facebook" style="color: #FBFAF7;"></i></a></li>
+                    <li><a class="linkedin" href=""><i class="fab fa-linkedin" style="color: #FBFAF7;"></i></a></li>
+                </ul>
+            </div>
         </footer>
+    
+                <style>
+                    footer.site-footer {
+                    position: relative;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    padding: 20px 0;
+                    text-align: center;
+                    color: #FBFAF7;
+                    font-size: 16px;
+                    background-color: #1F2B3D; 
+                    border-top: .5px solid #FBFAF7
+                }
+            </style>
+    
     </body>
-</html>
+    </html>
+    
